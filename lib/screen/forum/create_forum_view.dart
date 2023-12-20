@@ -28,6 +28,8 @@ class _CreateForumViewState extends State<CreateForumView> {
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: grey10,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             showDialog<void>(
@@ -90,7 +92,10 @@ class _CreateForumViewState extends State<CreateForumView> {
               },
             );
           },
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back,
+            color: grey700,
+          ),
         ),
         title: Text(
           'Kembali ke Forum',
@@ -227,15 +232,15 @@ class _CreateForumViewState extends State<CreateForumView> {
               ),
             )
           : Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
                 child: Text(
                   "Harap mendaftarkan pasien terlebih dahulu pada menu profile untuk dapat membuat forum diskusi!!",
                   style: semiBold16Grey900,
                   textAlign: TextAlign.center,
                 ),
               ),
-          ),
+            ),
     );
   }
 }

@@ -106,6 +106,11 @@ class DetailForumView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: grey10,
+        iconTheme: IconThemeData(
+          color: grey700,
+        ),
+        elevation: 0,
         title: Text(
           'Kembali ke Forum',
           style: semiBold16Grey700,
@@ -243,15 +248,15 @@ class DetailForumView extends StatelessWidget {
               ),
             )
           : Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
                 child: Text(
                   "Buat pasien pada menu profile terlebih dahulu untuk dapat melihat percakapan antara dokter dan pasien!!",
                   style: semiBold16Grey900,
                   textAlign: TextAlign.center,
                 ),
               ),
-          ),
+            ),
     );
   }
 }
