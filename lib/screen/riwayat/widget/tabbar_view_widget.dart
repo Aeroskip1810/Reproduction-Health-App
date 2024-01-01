@@ -57,6 +57,8 @@ class TabBarViewWidget extends StatelessWidget {
                       color: grey10,
                       alignment: Alignment.center,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset(
                             Assets.assetsEmptyTransactions,

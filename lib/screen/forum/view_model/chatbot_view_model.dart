@@ -20,6 +20,19 @@ class ChatbotViewModel extends ChangeNotifier {
     'profile',
   ];
 
+  final bool _isChat = false;
+  bool get isChat => _isChat;
+
+  void updateIsChatTrue(){
+    _isChat == true;
+    notifyListeners();
+  }
+
+  void updateIsChatFalse(){
+    _isChat == false;
+    notifyListeners();
+  }
+
   List<String> get categories => _categories;
 
   bool isLoading = false;

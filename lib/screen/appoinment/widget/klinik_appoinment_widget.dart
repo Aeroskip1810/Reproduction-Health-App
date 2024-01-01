@@ -72,21 +72,24 @@ class KlinikAppoinmentWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4.0),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: clinics.image ?? '',
-                                width: 154,
-                                height: 80,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Center(
-                                  child: Icon(
-                                    Icons.error,
-                                    size: 50,
+                          Flexible(
+                            flex: 2,
+                            child: Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4.0),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: clinics.image ?? '',
+                                  width: 154,
+                                  height: 80,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Center(
+                                    child: Icon(
+                                      Icons.error,
+                                      size: 50,
+                                    ),
                                   ),
                                 ),
                               ),

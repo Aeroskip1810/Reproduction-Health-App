@@ -125,7 +125,7 @@ class _EditFamilyProfileState extends State<EditFamilyProfile> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Container(
+                      child: SizedBox(
                         width: 319,
                         height: 191,
                         child: Column(

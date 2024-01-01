@@ -81,6 +81,7 @@ class ChatBotForumView extends StatelessWidget {
                           history.chatbotHistoryViewModel?.response?[index];
                       return GestureDetector(
                         onTap: () {
+                          history.updateIsChatTrue();
                           Navigator.pushNamed(
                             context,
                             RoutesNavigation.assistantChatForumView,

@@ -60,6 +60,9 @@ class CreateForumViewModel extends ChangeNotifier {
         context: context,
       );
 
+      _titleController.clear();
+      _messageController.clear();
+
       if (context.mounted) {
         Navigator.pushNamedAndRemoveUntil(
           context,

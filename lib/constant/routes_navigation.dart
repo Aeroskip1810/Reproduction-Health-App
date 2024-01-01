@@ -26,8 +26,6 @@ class RoutesNavigation {
   static const String detailKlinikView = '/detail-klinik-view';
   static const String searchKlinikView = '/search-klinik-view';
   static const String detailDokterView = '/detail-dokter-view';
-  static const String locationView = '/location-view';
-  static const String detailLocationView = '/detail-location-view';
   static const String appoinmentView = '/appoinment-view';
   static const String mapsView = '/maps-view';
   static const String jadwalDokterView = '/jadwal-dokter-view';

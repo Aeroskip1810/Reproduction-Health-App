@@ -14,7 +14,7 @@ class ChangeDataProfile extends StatelessWidget {
   final TextEditingController? dateController;
   final Function(String?)? onChanged;
 
-  ChangeDataProfile({
+  const ChangeDataProfile({
     Key? key,
     this.controller1,
     this.controller2,

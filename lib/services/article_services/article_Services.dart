@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:reprohealth_app/models/article_models.dart';
+import 'package:flutter/foundation.dart';
+import 'package:reprohealth_app/models/article_models/article_models.dart';
 import 'package:reprohealth_app/models/doctor_models/doctor_models.dart';
 import 'package:reprohealth_app/models/profile_models/profile_models.dart';
 import 'package:reprohealth_app/utils/shared_preferences_utils.dart';
@@ -77,11 +78,15 @@ class ArticleServices {
 
         return doctor;
       } else {
-        print('Failed to fetch doctor data: ${response.statusCode}');
+        if (kDebugMode) {
+          print('Failed to fetch doctor data: ${response.statusCode}');
+        }
         return null;
       }
     } catch (e) {
-      print('Failed to fetch doctor data: $e');
+      if (kDebugMode) {
+        print('Failed to fetch doctor data: $e');
+      }
       return null;
     }
   }
@@ -106,15 +111,21 @@ class ArticleServices {
               ResponseDataProfile.fromMap(responseData);
           return profile;
         } else {
-          print('Failed to fetch current user profile: No data available');
+          if (kDebugMode) {
+            print('Failed to fetch current user profile: No data available');
+          }
           return null;
         }
       } else {
-        print('Failed to fetch current user profile: ${response.statusCode}');
+        if (kDebugMode) {
+          print('Failed to fetch current user profile: ${response.statusCode}');
+        }
         return null;
       }
     } catch (e) {
-      print('Failed to fetch current user profile: $e');
+      if (kDebugMode) {
+        print('Failed to fetch current user profile: $e');
+      }
       return null;
     }
   }
@@ -125,15 +136,21 @@ class ArticleServices {
     required String articleId,
   }) async {
     if (articleId == null) {
-      print('Article ID is null');
+      if (kDebugMode) {
+        print('Article ID is null');
+      }
     }
     if (articleId.isEmpty) {
-      print('Article ID is empty or null');
+      if (kDebugMode) {
+        print('Article ID is empty or null');
+      }
       throw ArgumentError('Invalid article ID');
     }
 
     String url = constructUrl('articles/$articleId/comments');
-    print('Post Comment URL: $url');
+    if (kDebugMode) {
+      print('Post Comment URL: $url');
+    }
 
     String token = await SharedPreferencesUtils().getToken();
 
@@ -152,7 +169,9 @@ class ArticleServices {
         ),
       );
 
-      print('Comment post response: $response');
+      if (kDebugMode) {
+        print('Comment post response: $response');
+      }
 
       final responseData = response.data;
       // if (responseData == null) {
@@ -160,9 +179,13 @@ class ArticleServices {
       // }
     } on DioException catch (e) {
       if (e.response != null) {
-        print('Failed to post comments1: ${e.response?.data}');
+        if (kDebugMode) {
+          print('Failed to post comments1: ${e.response?.data}');
+        }
       } else {
-        print('Failed to post comments2: ${e.message}');
+        if (kDebugMode) {
+          print('Failed to post comments2: ${e.message}');
+        }
       }
       throw Exception('Failed to post comment');
     }
@@ -217,7 +240,9 @@ class ArticleServices {
             'Authorization': 'Bearer $token',
           }));
       if (response.statusCode == 201) {
-        print('Bookmark added');
+        if (kDebugMode) {
+          print('Bookmark added');
+        }
       } else {
         throw Exception('Failed to bookmark article: ${response.statusCode}');
       }

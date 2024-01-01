@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:reprohealth_app/screen/profile/widget/profile_widget/button_widget.dart';
@@ -113,7 +114,9 @@ class PusatBantuanWidget extends StatelessWidget {
                           );
                           await FlutterEmailSender.send(email);
                         } catch (error) {
-                          print('Error sending email: $error');
+                          if (kDebugMode) {
+                            print('Error sending email: $error');
+                          }
                         }
                       },
                       color: green500

@@ -21,6 +21,7 @@ class _AppoinmentViewState extends State<AppoinmentView> {
   @override
   void initState() {
     Provider.of<AppoinmentViewModel>(context, listen: false).getClinicsList();
+    Provider.of<AppoinmentViewModel>(context, listen: false).getLocation();
     Provider.of<AppoinmentViewModel>(context, listen: false)
         .getSpecialistList();
     super.initState();

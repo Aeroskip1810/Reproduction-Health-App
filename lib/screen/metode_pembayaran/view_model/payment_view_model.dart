@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reprohealth_app/constant/routes_navigation.dart';
+import 'package:reprohealth_app/models/appointment_models/appointment_models.dart';
+import 'package:reprohealth_app/services/appointment_services/appointment_services.dart';
 import 'package:reprohealth_app/services/payment_services/payment_services.dart';
 import 'package:reprohealth_app/theme/theme.dart';
 
@@ -11,6 +13,10 @@ class PaymentViewModel extends ChangeNotifier {
 
   final TextEditingController _rekController = TextEditingController();
   TextEditingController get rekController => _rekController;
+
+  final AppointmentServices _appointmentServices = AppointmentServices();
+  AppoinmentModels? _appointmentList;
+  AppoinmentModels? get appointmentList => _appointmentList;
 
   final ImagePicker _imagePicker = ImagePicker();
   ImagePicker get imagePicker => _imagePicker;
@@ -54,20 +60,37 @@ class PaymentViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Masukkan Nama';
+  bool validateName(String value) {
+    if (value.isEmpty) {
+      return false;
     }
-    return null;
+    return true;
   }
 
-  String? validateRekening(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Nomor rekening tidak boleh kosong';
+  bool validateRekening(String value) {
+    if (value.isEmpty || value.isEmpty) {
+      return false;
     } else if (value.length < 8) {
-      return 'Nomor rekening minimal 8 karakter';
+      return false;
     }
-    return null;
+    return true;
+  }
+
+  Future<void> getTransactions({required String patientId}) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      _appointmentList =
+          await _appointmentServices.getTransactions(patientId: patientId);
+      notifyListeners();
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> showImagePicker({required BuildContext context}) async {

@@ -131,24 +131,32 @@ class LihatForumWidget extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  AvatarStack(
-                                    height: 32,
-                                    width: 53.82,
-                                    avatars: [
-                                      forum != null &&
-                                              forum.forumReplies != null &&
-                                              forum.forumReplies?.isNotEmpty ==
-                                                  true
-                                          ? NetworkImage(
+                                  forum != null &&
+                                          forum.forumReplies != null &&
+                                          forum.forumReplies?.isNotEmpty == true
+                                      ? AvatarStack(
+                                          height: 32,
+                                          width: 53.82,
+                                          avatars: [
+                                            NetworkImage(
                                               forum.forumReplies?.first.doctor
                                                       ?.profileImage ??
                                                   '',
-                                            )
-                                          : NetworkImage(
+                                            ),
+                                            forum.anonymous == true ? const NetworkImage("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png") : NetworkImage(
+                                              forum.patientProfile ?? '',
+                                            ),
+                                          ],
+                                        )
+                                      : AvatarStack(
+                                          height: 32,
+                                          width: 53.82,
+                                          avatars: [
+                                            forum?.anonymous == true ? const NetworkImage("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png") : NetworkImage(
                                               forum?.patientProfile ?? '',
                                             ),
-                                    ],
-                                  ),
+                                          ],
+                                        ),
                                   const SizedBox(width: 168),
                                   GestureDetector(
                                     onTap: () {
